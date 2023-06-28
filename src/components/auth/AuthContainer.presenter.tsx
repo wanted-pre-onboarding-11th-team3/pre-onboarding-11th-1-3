@@ -1,7 +1,7 @@
 import Button from 'components/common/Button';
 import Input from 'components/common/Input';
 import Title from 'components/common/Title';
-import { IAuth, IAuthValidError } from 'interfaces/auth';
+import { IAuth, IAuthValid } from 'interfaces/auth';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -9,7 +9,7 @@ import styled from 'styled-components';
 interface IAuthContainer {
   title: string;
   data: IAuth;
-  errorMessage: IAuthValidError;
+  isValid: IAuthValid;
   dataTestid: string;
   disabled: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -19,7 +19,7 @@ interface IAuthContainer {
 const AuthContainerPresenter = ({
   title,
   data,
-  errorMessage,
+  isValid,
   dataTestid,
   disabled,
   onChange,
@@ -38,7 +38,9 @@ const AuthContainerPresenter = ({
           value={data.email}
           onChange={onChange}
         />
-        <InvalidStyle>{errorMessage.emailError}</InvalidStyle>
+        {!isValid.isEmail && data.email && (
+          <InvalidStyle>이메일 형식을 확인해 주세요.</InvalidStyle>
+        )}
         <Input
           dataTestid="password-input"
           type="password"
@@ -46,9 +48,9 @@ const AuthContainerPresenter = ({
           value={data.password}
           onChange={onChange}
         />
-        <InvalidStyle className="inValid">
-          {errorMessage.passwordError}
-        </InvalidStyle>
+        {!isValid.isPassword && data.password && (
+          <InvalidStyle>8자 이상 입력해주세요.</InvalidStyle>
+        )}
         <Button
           type="submit"
           dataTestid={dataTestid}

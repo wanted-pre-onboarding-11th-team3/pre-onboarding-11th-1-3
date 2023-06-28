@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AuthContainerPresenter from './AuthContainer.presenter';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SIGNIN, SIGNUP } from 'apis/auth';
-import { IAuth, IAuthValid, IAuthValidError } from 'interfaces/auth';
+import { IAuth, IAuthValid } from 'interfaces/auth';
 
 interface IAuthContainer {
   title: string;
@@ -20,16 +20,10 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
     isEmail: false,
     isPassword: false,
   });
-  const [errorMessage, setErrorMessage] = useState<IAuthValidError>({
-    emailError: '',
-    passwordError: '',
-  });
   const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
-    if (isValid.isEmail && isValid.isPassword) {
-      setDisabled(false);
-    }
+    setDisabled(!(isValid.isEmail && isValid.isPassword));
   }, [isValid.isEmail, isValid.isPassword]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,36 +34,18 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
       case 'email':
         const regex = /\S+@\S+\.\S+/; // eslint-disable-line
 
-        if (!regex.test(current)) {
-          setErrorMessage({
-            ...errorMessage,
-            emailError: '이메일 형식을 확인해 주세요.',
-          });
-          setIsValid(isValid => ({ ...isValid, isEmail: false }));
-          setDisabled(true);
-        } else {
-          setErrorMessage({ ...errorMessage, emailError: '' });
-          setIsValid({ ...isValid, isEmail: true });
-        }
-        setForm({ ...form, email: current });
+        setIsValid(prev => ({
+          ...prev,
+          isEmail: !regex.test(current) ? false : true,
+        }));
+        setForm(prev => ({ ...prev, email: current }));
         break;
       case 'password':
-        if (current.length < 8) {
-          setErrorMessage({
-            ...errorMessage,
-            passwordError: '8자 이상 입력해주세요.',
-          });
-          setIsValid({ ...isValid, isPassword: false });
-          setDisabled(true);
-        } else {
-          setErrorMessage({
-            ...errorMessage,
-            passwordError: '',
-          });
-          setIsValid({ ...isValid, isPassword: true });
-          setDisabled(false);
-        }
-        setForm({ ...form, password: current });
+        setIsValid(prev => ({
+          ...prev,
+          isPassword: current.length < 8 ? false : true,
+        }));
+        setForm(prev => ({ ...prev, password: current }));
         break;
     }
   };
@@ -102,8 +78,6 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
           ? '이메일이나 비밀번호를 다시 확인해주세요.'
           : ''
       );
-    } finally {
-      setDisabled(false);
     }
   };
 
@@ -111,7 +85,7 @@ const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
     <AuthContainerPresenter
       title={title}
       data={form}
-      errorMessage={errorMessage}
+      isValid={isValid}
       dataTestid={dataTestid}
       disabled={disabled}
       onChange={handleChange}
