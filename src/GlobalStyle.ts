@@ -14,6 +14,13 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
+  #root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
   button, input {
     background-color: transparent;
     border: none;
@@ -25,6 +32,11 @@ const GlobalStyle = createGlobalStyle`
   input {
     width: 100%;
     height: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 `;
 
