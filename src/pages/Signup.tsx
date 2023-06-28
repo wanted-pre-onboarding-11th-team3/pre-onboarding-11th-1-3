@@ -1,7 +1,7 @@
-import React from 'react';
+import AuthContainer from 'components/auth/AuthContainer';
 
 const Signup = () => {
-  return <div>Signup</div>;
+  return <AuthContainer title="회원가입" dataTestid="signup-button" />;
 };
 
 export default Signup;
