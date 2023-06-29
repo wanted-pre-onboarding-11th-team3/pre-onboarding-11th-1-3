@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface IButton {
+interface PropsType {
   buttontype?: string;
   type?: 'button' | 'submit';
   text: string;
@@ -21,7 +21,7 @@ const Button = ({
   color = '',
   isDisabled = false,
   onClick,
-}: IButton) => {
+}: PropsType) => {
   return (
     <ButtonStyle
       buttontype={buttontype}

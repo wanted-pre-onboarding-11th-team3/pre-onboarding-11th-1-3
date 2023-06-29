@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react';
 import AuthContainerPresenter from './AuthContainer.presenter';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { SIGNIN, SIGNUP } from 'apis/auth';
-import { IAuth, IAuthValid } from 'interfaces/auth';
+import { IAuthType, IAuthValidType } from 'interfaces/auth';
 
-interface IAuthContainer {
+interface PropsType {
   title: string;
   dataTestid: string;
 }
 
-const AuthContainer = ({ title, dataTestid }: IAuthContainer) => {
+const AuthContainer = ({ title, dataTestid }: PropsType) => {
   const navigate = useNavigate();
   const location = useLocation().pathname;
-  const [form, setForm] = useState<IAuth>({
+  const [form, setForm] = useState<IAuthType>({
     email: '',
     password: '',
   });
-  const [isValid, setIsValid] = useState<IAuthValid>({
+  const [isValid, setIsValid] = useState<IAuthValidType>({
     isEmail: false,
     isPassword: false,
   });

@@ -1,9 +1,9 @@
-export interface IAuth {
+export interface IAuthType {
   email: string;
   password: string;
 }
 
-export interface IAuthValid {
+export interface IAuthValidType {
   isEmail: boolean;
   isPassword: boolean;
 }
