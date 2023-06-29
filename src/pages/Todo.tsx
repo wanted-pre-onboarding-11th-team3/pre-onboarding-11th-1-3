@@ -10,13 +10,18 @@ const Todo = () => {
   const [list, setList] = useState<TodoType[]>([]);
 
   useEffect(() => {
-    GETTODO().then(res => {
-      if (!res) {
-        console.log('투두 조회 실패');
-      } else {
-        setList(res);
+    const getTodos = async () => {
+      try {
+        const response = await GETTODO();
+        if (!response) {
+          throw new Error('todoList를 불러오지 못했습니다.');
+        }
+        setList(response);
+      } catch (error: any) {
+        alert(error.message);
       }
-    });
+    };
+    getTodos();
   }, []);
 
   return (

@@ -18,9 +18,6 @@ const TodoAdd = ({ list, setList }: PropsType) => {
       return;
     }
 
-    // Promise 객체를 새로 만들기 보다는
-    // async/await를 통해서 기존 객체를 그대로 이용하여
-    // 성능을 조금 올리는 작업을 했습니다.
     try {
       const response = await CREATETODO(text);
       if (!response) {
@@ -39,8 +36,6 @@ const TodoAdd = ({ list, setList }: PropsType) => {
   };
 
   return (
-    // onClick 이벤트보다 onSubmit 이벤트가 UX적으로 좋아서 바꿨음,(Enter로 생성가능)
-    // 그리고 onSubmit이 브라우저의 내장 폼 유효성 검사가 자동으로 실행된다고 해서 사용함
     <FormStyle onSubmit={handlerSubmit}>
       <InputStyle
         type="text"

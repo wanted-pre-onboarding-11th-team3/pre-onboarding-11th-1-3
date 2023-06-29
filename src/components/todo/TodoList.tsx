@@ -59,7 +59,6 @@ const TodoList = ({ item, setList }: PropsType) => {
     }
   };
 
-  // 새로 객체 만들지 않고, 기존의 함수 캐싱을 이용해서 실행하기
   const toggleIsEdit = useCallback(() => {
     setIsEdit(prev => !prev);
   }, [setIsEdit]);
@@ -147,15 +146,6 @@ const TxtStyle = styled.input`
   width: auto;
   display: flex;
   border-bottom: 1px solid navy;
-
-  &::after {
-    content: '';
-    width: 100%;
-    height: 1px;
-    background-color: navy;
-    position: absolute;
-    bottom: 0;
-  }
 `;
 
 const TodotxtStyle = styled.span`
