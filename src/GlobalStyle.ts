@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #eaeaea;
   }
 
   button, input {
@@ -31,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
 
   input {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
   }
 
   a {
