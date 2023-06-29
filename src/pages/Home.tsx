@@ -21,6 +21,7 @@ const HomeStyle = styled.section`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background-color: #fff;
   h1 {
     margin-bottom: 20px;
     font-weight: bold;
@@ -30,7 +31,8 @@ const HomeStyle = styled.section`
   a {
     width: 100%;
     line-height: 50px;
-    background-color: beige;
+    background-color: navy;
+    color: #fff;
     text-align: center;
     border-radius: 10px;
   }

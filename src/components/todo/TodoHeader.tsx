@@ -6,7 +6,7 @@ const TodoHeader = () => {
 
   const handleLogout = () => {
     window.localStorage.clear();
-    navigate('/signin');
+    navigate('/');
   };
 
   return (
