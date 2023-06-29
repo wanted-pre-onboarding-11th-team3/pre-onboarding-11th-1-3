@@ -4,11 +4,10 @@ import { TodoType } from 'interfaces/todo';
 import styled from 'styled-components';
 
 interface PropsType {
-  list: Array<TodoType>;
   setList: React.Dispatch<React.SetStateAction<Array<TodoType>>>;
 }
 
-const TodoAdd = ({ list, setList }: PropsType) => {
+const TodoAdd = ({ setList }: PropsType) => {
   const [text, setText] = useState('');
 
   const handlerSubmit = async (e: { preventDefault: () => void }) => {
@@ -21,18 +20,15 @@ const TodoAdd = ({ list, setList }: PropsType) => {
     try {
       const response = await CREATETODO(text);
       if (!response) {
-        console.log('투두 등록 실패');
+        throw new Error('todo 등록에 실패하였습니다.');
       } else {
-        setList([...list, response]);
+        setList(prevList => [...prevList, response]);
       }
-    } catch (error) {
-      console.log('투두 등록 실패', error);
+    } catch (error: any) {
+      alert(error.message);
     }
-    setText('');
-  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
+    setText('');
   };
 
   return (
@@ -42,7 +38,9 @@ const TodoAdd = ({ list, setList }: PropsType) => {
         data-testid="new-todo-input"
         placeholder="Add Todo"
         value={text}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+        onChange={(e: { target: { value: React.SetStateAction<string> } }) =>
+          setText(e.target.value)
+        }
       />
       <ButtonStyle data-testid="new-todo-add-button" type="submit">
         Add
