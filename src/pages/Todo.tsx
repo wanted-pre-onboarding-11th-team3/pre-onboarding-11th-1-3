@@ -36,7 +36,7 @@ const Todo = () => {
           <EmptyMessage>할 일을 입력해주세요.</EmptyMessage>
         )}
       </TodoListStyle>
-      <TodoAdd list={list} setList={setList} />
+      <TodoAdd setList={setList} />
     </TodoContainerStyle>
   );
 };

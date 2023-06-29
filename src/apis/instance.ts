@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setLocalStorage } from 'utils/storage';
+import { getLocalStorage, setLocalStorage } from 'utils/storage';
 
 const API_BASE_URL = 'https://www.pre-onboarding-selection-task.shop';
 
@@ -10,7 +10,7 @@ const axiosApi = (url: string) => {
   });
 
   instance.interceptors.request.use(config => {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = getLocalStorage('accessToken');
     if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
     return config;
   });
