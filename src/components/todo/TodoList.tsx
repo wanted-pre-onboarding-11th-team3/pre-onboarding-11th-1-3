@@ -25,14 +25,14 @@ const TodoList = ({ item, setList }: PropsType) => {
         isCompleted: newTodo.isCompleted,
       });
       if (!response) {
-        console.log('투두 수정 실패');
+        throw new Error('todo 수정에 실패하였습니다.');
       } else {
         setList(prevList =>
           prevList.map(value => (value.id === newTodo.id ? newTodo : value))
         );
       }
-    } catch (error) {
-      console.log('투두 수정 실패', error);
+    } catch (error: any) {
+      alert(error.message);
     }
   };
 
@@ -49,13 +49,12 @@ const TodoList = ({ item, setList }: PropsType) => {
     try {
       const response = await DELETETODO(id);
       if (response?.status === 204) {
-        console.log('삭제 성공!');
         setList(prevList => prevList.filter(item => item.id !== id));
       } else {
-        console.log('삭제 실패');
+        throw new Error('todo 삭제에 실패하였습니다.');
       }
-    } catch (error) {
-      console.log('삭제 실패', error);
+    } catch (error: any) {
+      alert(error.message);
     }
   };
 
