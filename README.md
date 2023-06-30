@@ -1,4 +1,5 @@
 # [Team3 - Todo App]()
+
 👆🏻 제목을 클릭하면 배포된 사이트를 확인하실 수 있습니다.
 
 <br/>
@@ -95,20 +96,20 @@
 
 <table border>
   <tr>
-    <td></td>
-    <td></td>
+    <td><img src="signup-1.gif" alt="회원가입"/></td>
+    <td><img src="login.gif" alt="로그인"/></td>
   </tr>
   <tr>
-    <td>회원가입</td>
-    <td>로그인</td>
+    <td style='text-align: center'>회원가입</td>
+    <td style='text-align: center'>로그인</td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
+    <td><img src="todo.gif" alt="Todo"/></td>
+    <td><img src="redirectRoute.gif" alt="redirectRoute"/></td>
   </tr>
   <tr>
-    <td>Todo</td>
-    <td>Redirect Route</td>
+    <td style='text-align: center'>Todo</td>
+    <td style='text-align: center'>Redirect Route</td>
   </tr>
 </table>
 
@@ -233,9 +234,10 @@
         break;
     }
   ```
-![authAfter](https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/99a9c73b-846e-4425-ad27-a4177a159eb2)
 
-  <br/>
+  ![authAfter](https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/99a9c73b-846e-4425-ad27-a4177a159eb2)
+
+    <br/>
 
 ### ✅ TODO
 
@@ -297,34 +299,64 @@ if (!accessToken && location === '/todo') {
   </thead>
   <tbody>
     <tr>
-      <td>규리</td>
-      <td></td>
-      <td></td>
+      <td width="30px">규리</td>
+      <td>
+        - 같은 기능임에도 각자 다른 설계와 코드를 짜온 것을 보고 “이렇게 구현할 수도 있구나” 하고 많이 배웠다.<br/>
+        - 코드 짜는 과정에서 제가 고려하지 못한 사항들까지 고려하여 꼼꼼히 처리하신 분들의 코드를 보고 많이 배웠다.<br/>
+        - 프로젝트 폴더 구조를 짜고 모듈화하는 것의 장점을 크게 느꼈다. (가독성이 훨씬 좋아짐!)
+      </td>
+      <td>
+        - 채용과제로 인해 적극적으로 참여하지 못해 아쉬웠다. 다음주 과제부터는 더 기여도를 높여 많이 배웠으면 좋겠다.
+      </td>
     </tr>
     <tr>
       <td>주희</td>
-      <td></td>
-      <td></td>
+      <td>
+        - 미팅 때마다 분위기가 너무 좋았다. 모두 적극적으로 열심히 하는 분위기였다. (우리 팀 모두 MBTI S와 J!!)<br/>
+        - 다른 사람의 코드를 제대로 처음 보는 기회였는데 디렉토리 구조와 모듈화가 잘 되어 있어서 이점을 배웠습니다!
+      </td>
+      <td>
+        - 여러명의 코드를 하나의 코드로 합치는 부분이 어려웠다. 다음 과제부터는 구조나 스타일 등의 기술스택 등은 토론을 통해 정한 후 과제를 시작하는 것이 좋을 것 같다.
+      </td>
     </tr>
-    <tr>
+    <!-- <tr>
       <td>상호</td>
       <td></td>
       <td></td>
-    </tr>
+    </tr> -->
     <tr>
       <td>민지</td>
-      <td></td>
-      <td></td>
+      <td>
+      - 동일한 기능들을 여러 사람의 코드를 보고 Best Practice 정하는 과정이 흥미로웠고 시야가 넓어질 수 있었다.<br/>
+      - 다양한 시점으로 리팩토링 하니 더 효과적으로 진행할 수 있었다. 놓쳤던 부분을 챙겨 갈 수 있었음.<br/>
+      - 모두 적극적 참여하여 좀 더 의욕이 생겼다.
+      </td>
+      <td>
+      - 스타일이 다 다른 코드를 합치고 리팩토링 하는 것이 시간 소요가 상당했다.
+      </td>
     </tr>
     <tr>
       <td>승준</td>
-      <td></td>
-      <td></td>
+      <td>
+        - 다들 저보다 에너지가 좋으셔서 든든했고, 재밌었다.<br/>
+        - 다양한 코드 스타일을 보고 생각해보지 못했던 점을 보고 많이 배웠다.<br/>
+        - 모듈화에 대한 생각을 깊게 해본적은 없었는데.. 이번에 배우고 많이 깨달았다.
+      </td>
+      <td>
+      - LiveShare를 할 때, 네트워크 상 문제가 있어서 느렸다. 그래서 답답했고 아쉬웠다.<br/>
+      - 다음에는 팀장을 통해서 병합여부를 판단하고 진행하면 좋을 것 같다. (사실 Best Practice 를 정하고 진행하는거라 이번 프로젝트는 불가능 하긴 함.)
+      </td>
     </tr>
     <tr>
       <td>혜림</td>
-      <td></td>
-      <td></td>
+      <td>
+      - 하나의 코드를 보면서 팀원들의 다양한 인사이트와 다양한 코드 작성법을 볼 수 있어서 좋았다.<br/>
+      - Best Practice를 선발하느라 다른 사람의 코드를 꽤 자세히 볼 수 있는 기회를 얻을 수 있어서 좋았다.<br/>
+      - 팀원들과 커뮤니케이션이 잘 돼서 좋았다.
+      </td>
+      <td>
+      - 초반에 우왕좌왕하느라 프로젝트 세팅하는데 생각보다 시간이 많이 들었다.
+      </td>
     </tr>
   </tbody>
 </table>
