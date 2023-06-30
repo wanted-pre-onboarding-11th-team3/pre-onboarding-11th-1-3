@@ -23,7 +23,7 @@
 
 <br/>
 
-## 🫱🏻‍🫲🏻 Members
+## 🎖️ Members
 
 <table border>
   <tbody>
@@ -92,7 +92,26 @@
 - [회원가입](#signup--login)
 - [로그인 / 로그아웃](#signup--login)
 - [Todo](#todo)
-- [Redirection Route](#redirect-route)
+- [Redirect Route](#redirect-route)
+
+<table border>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>회원가입</td>
+    <td>로그인</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Todo</td>
+    <td>Redirect Route</td>
+  </tr>
+</table>
 
 ### 🌳 File Tree
 
@@ -265,3 +284,49 @@ if (!accessToken && location === '/todo') {
   return <Navigate to="/signin" replace />;
 }
 ```
+
+<br/>
+
+## ✒️ 회고
+
+<table border>
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>좋았던 점</th>
+      <th>아쉬웠던 점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>규리</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>주희</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>상호</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>민지</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>승준</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>혜림</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
