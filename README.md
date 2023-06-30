@@ -96,16 +96,17 @@
 
 <table border>
   <tr>
-    <td><img src="signup-1.gif" alt="회원가입"/></td>
-    <td><img src="login.gif" alt="로그인"/></td>
+<!--     <td><img src="signup-1.gif" alt="회원가입"/></td> -->
+    <td><img src="https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/2db38b44-0260-4475-a352-1a6bbf226a64" alt="회원가입"/></td>
+    <td><img src="https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/8fdfc5cc-4681-4acd-bb03-8f5bb41cf9ca" alt="로그인"/></td>
   </tr>
   <tr>
     <td align="center">회원가입</td>
     <td align="center">로그인</td>
   </tr>
   <tr>
-    <td><img src="todo.gif" alt="Todo"/></td>
-    <td><img src="redirectRoute.gif" alt="redirectRoute"/></td>
+    <td><img src="https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/5148fdc9-fdfb-4600-8239-f259d1163420" alt="Todo"/></td>
+    <td><img src="https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/82069f6d-0a05-40c9-ad7d-21ffd4ff836e" alt="redirectRoute"/></td>
   </tr>
   <tr>
     <td align="center">Todo</td>
