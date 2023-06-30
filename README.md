@@ -292,14 +292,14 @@ if (!accessToken && location === '/todo') {
 <table border>
   <thead>
     <tr>
-      <th>이름</th>
-      <th>좋았던 점</th>
-      <th>아쉬웠던 점</th>
+      <th width="6%">이름</th>
+      <th width="47%">좋았던 점</th>
+      <th width="47%">아쉬웠던 점</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td width="30px">규리</td>
+      <td>규리</td>
       <td>
         - 같은 기능임에도 각자 다른 설계와 코드를 짜온 것을 보고 “이렇게 구현할 수도 있구나” 하고 많이 배웠다.<br/>
         - 코드 짜는 과정에서 제가 고려하지 못한 사항들까지 고려하여 꼼꼼히 처리하신 분들의 코드를 보고 많이 배웠다.<br/>
