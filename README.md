@@ -96,7 +96,6 @@
 
 <table border>
   <tr>
-<!--     <td><img src="signup-1.gif" alt="회원가입"/></td> -->
     <td><img src="https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/2db38b44-0260-4475-a352-1a6bbf226a64" alt="회원가입"/></td>
     <td><img src="https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/8fdfc5cc-4681-4acd-bb03-8f5bb41cf9ca" alt="로그인"/></td>
   </tr>
