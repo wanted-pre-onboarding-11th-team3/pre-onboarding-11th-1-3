@@ -1,4 +1,4 @@
-# [Team3 - Todo App]()
+# [Team3 - Todo App](https://11th-team3-week1-todo.netlify.app)
 
 👆🏻 제목을 클릭하면 배포된 사이트를 확인하실 수 있습니다.
 
