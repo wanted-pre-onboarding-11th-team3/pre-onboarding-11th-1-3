@@ -292,14 +292,14 @@ if (!accessToken && location === '/todo') {
 <table border>
   <thead>
     <tr>
-      <th width="6%">이름</th>
-      <th width="47%">좋았던 점</th>
-      <th width="47%">아쉬웠던 점</th>
+      <th width="10%">이름</th>
+      <th width="45%">좋았던 점</th>
+      <th width="45%">아쉬웠던 점</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>규리</td>
+      <td align="center">규리</td>
       <td>
         - 같은 기능임에도 각자 다른 설계와 코드를 짜온 것을 보고 “이렇게 구현할 수도 있구나” 하고 많이 배웠다.<br/>
         - 코드 짜는 과정에서 제가 고려하지 못한 사항들까지 고려하여 꼼꼼히 처리하신 분들의 코드를 보고 많이 배웠다.<br/>
@@ -310,7 +310,7 @@ if (!accessToken && location === '/todo') {
       </td>
     </tr>
     <tr>
-      <td>주희</td>
+      <td align="center">주희</td>
       <td>
         - 미팅 때마다 분위기가 너무 좋았다. 모두 적극적으로 열심히 하는 분위기였다. (우리 팀 모두 MBTI S와 J!!)<br/>
         - 다른 사람의 코드를 제대로 처음 보는 기회였는데 디렉토리 구조와 모듈화가 잘 되어 있어서 이점을 배웠습니다!
@@ -320,12 +320,12 @@ if (!accessToken && location === '/todo') {
       </td>
     </tr>
     <!-- <tr>
-      <td>상호</td>
+      <td align="center">상호</td>
       <td></td>
       <td></td>
     </tr> -->
     <tr>
-      <td>민지</td>
+      <td align="center">민지</td>
       <td>
       - 동일한 기능들을 여러 사람의 코드를 보고 Best Practice 정하는 과정이 흥미로웠고 시야가 넓어질 수 있었다.<br/>
       - 다양한 시점으로 리팩토링 하니 더 효과적으로 진행할 수 있었다. 놓쳤던 부분을 챙겨 갈 수 있었음.<br/>
@@ -336,7 +336,7 @@ if (!accessToken && location === '/todo') {
       </td>
     </tr>
     <tr>
-      <td>승준</td>
+      <td align="center">승준</td>
       <td>
         - 다들 저보다 에너지가 좋으셔서 든든했고, 재밌었다.<br/>
         - 다양한 코드 스타일을 보고 생각해보지 못했던 점을 보고 많이 배웠다.<br/>
@@ -348,7 +348,7 @@ if (!accessToken && location === '/todo') {
       </td>
     </tr>
     <tr>
-      <td>혜림</td>
+      <td align="center">혜림</td>
       <td>
       - 하나의 코드를 보면서 팀원들의 다양한 인사이트와 다양한 코드 작성법을 볼 수 있어서 좋았다.<br/>
       - Best Practice를 선발하느라 다른 사람의 코드를 꽤 자세히 볼 수 있는 기회를 얻을 수 있어서 좋았다.<br/>
