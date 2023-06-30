@@ -100,16 +100,16 @@
     <td><img src="login.gif" alt="로그인"/></td>
   </tr>
   <tr>
-    <td style='text-align: center'>회원가입</td>
-    <td style='text-align: center'>로그인</td>
+    <td align="center">회원가입</td>
+    <td align="center">로그인</td>
   </tr>
   <tr>
     <td><img src="todo.gif" alt="Todo"/></td>
     <td><img src="redirectRoute.gif" alt="redirectRoute"/></td>
   </tr>
   <tr>
-    <td style='text-align: center'>Todo</td>
-    <td style='text-align: center'>Redirect Route</td>
+    <td align="center">Todo</td>
+    <td align="center">Redirect Route</td>
   </tr>
 </table>
 
