@@ -1,5 +1,4 @@
 # [Team3 - Todo App]()
-
 👆🏻 제목을 클릭하면 배포된 사이트를 확인하실 수 있습니다.
 
 <br/>
@@ -206,7 +205,7 @@
   }
   ```
 
-  ![Alt text](authBefore.gif)
+  ![authBefore](https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/5cb87bb7-0701-4b07-8eac-ba6c3489f914)
 
   <br/>
 
@@ -234,8 +233,7 @@
         break;
     }
   ```
-
-  ![Alt text](authAfter.gif)
+![authAfter](https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/99a9c73b-846e-4425-ad27-a4177a159eb2)
 
   <br/>
 
