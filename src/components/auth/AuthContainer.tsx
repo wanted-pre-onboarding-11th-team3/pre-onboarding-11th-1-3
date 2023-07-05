@@ -1,30 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AuthContainerPresenter from './AuthContainer.presenter';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { SIGNIN, SIGNUP } from 'apis/auth';
-import { IAuthType, IAuthValidType } from 'interfaces/auth';
+import { IAuthType } from 'interfaces/auth';
 
 interface PropsType {
   title: string;
   dataTestid: string;
+  onSubmit: (email: string, password: string) => Promise<void>;
 }
 
-const AuthContainer = ({ title, dataTestid }: PropsType) => {
-  const navigate = useNavigate();
-  const location = useLocation().pathname;
+const AuthContainer = ({ title, dataTestid, onSubmit }: PropsType) => {
   const [form, setForm] = useState<IAuthType>({
     email: '',
     password: '',
   });
-  const [isValid, setIsValid] = useState<IAuthValidType>({
-    isEmail: false,
-    isPassword: false,
-  });
-  const [disabled, setDisabled] = useState(true);
 
-  useEffect(() => {
-    setDisabled(!(isValid.isEmail && isValid.isPassword));
-  }, [isValid.isEmail, isValid.isPassword]);
+  const isValid = {
+    isEmail: /\S+@\S+\.\S+/.test(form.email),
+    isPassword: form.password.length >= 8,
+  };
+
+  const isDisable = !isValid.isEmail || !isValid.isPassword;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -32,19 +27,9 @@ const AuthContainer = ({ title, dataTestid }: PropsType) => {
 
     switch (event.target.type) {
       case 'email':
-        const regex = /\S+@\S+\.\S+/; // eslint-disable-line
-
-        setIsValid(prev => ({
-          ...prev,
-          isEmail: !regex.test(current) ? false : true,
-        }));
         setForm(prev => ({ ...prev, email: current }));
         break;
       case 'password':
-        setIsValid(prev => ({
-          ...prev,
-          isPassword: current.length < 8 ? false : true,
-        }));
         setForm(prev => ({ ...prev, password: current }));
         break;
     }
@@ -52,33 +37,7 @@ const AuthContainer = ({ title, dataTestid }: PropsType) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    try {
-      setDisabled(true);
-      if (location === '/signup') {
-        await SIGNUP({
-          email: form.email,
-          password: form.password,
-        });
-        alert('회원가입이 성공하였습니다!\n로그인을 시도해주세요.');
-        navigate('/signin');
-      }
-      if (location === '/signin') {
-        await SIGNIN({
-          email: form.email,
-          password: form.password,
-        });
-        alert('환영합니다!');
-        navigate('/todo');
-      }
-    } catch (error: any) {
-      alert(
-        location === '/signup'
-          ? error.response.data.message
-          : location === '/signin'
-          ? '이메일이나 비밀번호를 다시 확인해주세요.'
-          : ''
-      );
-    }
+    onSubmit(form.email, form.password);
   };
 
   return (
@@ -87,7 +46,7 @@ const AuthContainer = ({ title, dataTestid }: PropsType) => {
       data={form}
       isValid={isValid}
       dataTestid={dataTestid}
-      disabled={disabled}
+      disabled={isDisable}
       onChange={handleChange}
       onSubmit={handleSubmit}
     />

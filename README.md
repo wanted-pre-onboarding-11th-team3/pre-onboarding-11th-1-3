@@ -167,77 +167,236 @@
 
   - 이메일 or 비밀번호 입력 후 입력값을 삭제시, 에러메세지가 사라지지 않는 이슈를 발견하였습니다.
 
-  ```javascript
-  switch (event.target.type) {
-    case 'email':
-      const regex = /\S+@\S+\.\S+/
-    
-      if (!regex.test(current)) {
-        setErrorMessage({
-          ...errorMessage,
-          emailError: '이메일 형식을 확인해 주세요.',
-        })
-        setIsValid({ ...isValid, isEmail: false })
-        setDisabled(true)
-      } else {
-        setErrorMessage({ ...errorMessage, emailError: '' })
-        setIsValid({ ...isValid, isEmail: true })
-      }
-      setForm({ ...form, email: current })
-      break
-    case 'password':
-      if (current.length < 8) {
-        setErrorMessage({
-          ...errorMessage,
-          passwordError: '8자 이상 입력해주세요.',
-        })
-        setIsValid({ ...isValid, isPassword: false })
-        setDisabled(true)
-      } else {
-        setErrorMessage({
-          ...errorMessage,
-          passwordError: '',
-        })
-        setIsValid({ ...isValid, isPassword: true })
-        setDisabled(false)
-      }
-      setForm({ ...form, password: current })
-      break
-  }
-  ```
+    ```Javascript
+    // AuthContainer.tsx
+    const [form, setForm] = useState<IAuthType>({
+    email: '',
+    password: '',
+    });
 
-  ![authBefore](https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/5cb87bb7-0701-4b07-8eac-ba6c3489f914)
+    const [isValid, setIsValid] = useState<IAuthValidType>({
+    isEmail: false,
+    isPassword: false,
+    });
+
+    const [disabled, setDisabled] = useState(true);
+
+    useEffect(() => {
+    setDisabled(!(isValid.isEmail && isValid.isPassword));
+    }, [isValid.isEmail, isValid.isPassword]);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      event.preventDefault();
+      const current = event.target.value;
+
+      switch (event.target.type) {
+        case 'email':
+          const regex = /\S+@\S+\.\S+/;
+
+          if (!regex.test(current)) {
+            setErrorMessage({
+              ...errorMessage,
+              emailError: '이메일 형식을 확인해 주세요.',
+            });
+            setIsValid({ ...isValid, isEmail: false });
+            setDisabled(true);
+          } else {
+            setErrorMessage({ ...errorMessage, emailError: '' });
+            setIsValid({ ...isValid, isEmail: true });
+          }
+          setForm({ ...form, email: current });
+          break;
+        case 'password':
+          if (current.length < 8) {
+            setErrorMessage({
+              ...errorMessage,
+              passwordError: '8자 이상 입력해주세요.',
+            });
+            setIsValid({ ...isValid, isPassword: false });
+            setDisabled(true);
+          } else {
+            setErrorMessage({
+              ...errorMessage,
+              passwordError: '',
+            });
+            setIsValid({ ...isValid, isPassword: true });
+            setDisabled(false);
+          }
+          setForm({ ...form, password: current });
+          break;
+      }
+    };
+    ```
+
+    ![authBefore](https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/5cb87bb7-0701-4b07-8eac-ba6c3489f914)
 
   <br/>
 
 - 해결
 
-  - 불필요한 state를 삭제(errorMessage)하고 에러메세지는 유효성 유무를 판단하는 상태(isValid)를 넘겨주고 입력값이 없으면 에러메세지가 비활성화 되도록 구현하였습니다.
+  - 불필요한 state를 삭제(isValid, disable, errorMessage)하고 에러메세지는 유효성 유무를 판단하는 상태(isValid)를 넘겨주고 입력값이 없으면 에러메세지가 비활성화 되도록 구현하였습니다.
 
-  ```javascript
-  switch (event.target.type) {
-    case 'email':
-      const regex = /\S+@\S+\.\S+/; // eslint-disable-line
+    - ❗ 다음은 state가 아닙니다. (불필요한 state)
 
-      setIsValid(prev => ({
-        ...prev,
-        isEmail: !regex.test(current) ? false : true,
-      }));
-      setForm(prev => ({ ...prev, email: current }));
-      break;
-    case 'password':
-      setIsValid(prev => ({
-        ...prev,
-        isPassword: current.length < 8 ? false : true,
-      }));
-      setForm(prev => ({ ...prev, password: current }));
-      break;
-  }
-  ```
+      - 부모로부터 props를 통해 전달.
+      - 시간이 지나도 변하지 않음.
+      - 컴포넌트 안의 다른 state나 props를 가지고 계산 가능.
 
-  ![authAfter](https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/99a9c73b-846e-4425-ad27-a4177a159eb2)
+    ```Javascript
+     // AuthContainer.tsx
+    const [form, setForm] = useState<IAuthType>({
+        email: '',
+        password: '',
+      });
 
-    <br/>
+    const isValid = {
+      isEmail: /\S+@\S+\.\S+/.test(form.email),
+      isPassword: form.password.length >= 8,
+    };
+
+    const isDisable = !isValid.isEmail || !isValid.isPassword;
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      event.preventDefault();
+      const current = event.target.value;
+
+      switch (event.target.type) {
+        case 'email':
+          setForm(prev => ({ ...prev, email: current }));
+          break;
+        case 'password':
+          setForm(prev => ({ ...prev, password: current }));
+          break;
+      }
+    };
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      onSubmit(form.email, form.password);
+    };
+    ```
+
+    ![authAfter](https://github.com/hyerimhan/pre-onboarding-11th-1-3/assets/64674174/99a9c73b-846e-4425-ad27-a4177a159eb2)
+
+- 유지보수와 가독성을 위해 컴포넌트의 함수는 한번에 한가지 일만 처리해야 합니다.
+
+  - ❌ Bad
+
+    ```Javascript
+    // AuthContainer.tsx
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      try {
+        setDisabled(true);
+        if (location === '/signup') {
+          await SIGNUP({
+            email: form.email,
+            password: form.password,
+          });
+          alert('회원가입이 성공하였습니다!\n로그인을 시도해주세요.');
+          navigate('/signin');
+        }
+        if (location === '/signin') {
+          await SIGNIN({
+            email: form.email,
+            password: form.password,
+          });
+          alert('환영합니다!');
+          navigate('/todo');
+        }
+      } catch (error: any) {
+        alert(
+          location === '/signup'
+            ? error.response.data.message
+            : location === '/signin'
+            ? '이메일이나 비밀번호를 다시 확인해주세요.'
+            : ''
+        );
+      }
+    };
+
+    ```
+
+    ```Javascript
+    // Login.tsx
+    const Login = () => {
+      return <AuthContainer title="로그인" dataTestid="signin-button" />;
+    };
+    ```
+
+    ```Javascript
+    // Signup.tsx
+    const Signup = () => {
+      return <AuthContainer title="회원가입" dataTestid="signup-button" />;
+    };
+    ```
+
+  - ⭕ Good
+
+    ```Javascript
+    // AuthContainer.tsx
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      onSubmit(form.email, form.password);
+    };
+    ```
+
+    ```Javascript
+    // Login.tsx
+    const Login = () => {
+      const signin = async (email: string, password: string) => {
+        try {
+          const response = await SIGNIN({
+            email,
+            password,
+          });
+          alert('환영합니다!');
+          navigate('/todo');
+          if (!response) {
+            throw new Error('이메일이나 비밀번호를 다시 확인해주세요');
+          }
+        } catch (error: any) {
+          alert(error.message);
+        }
+      };
+
+      return (
+        <AuthContainer
+          title="로그인"
+          dataTestid="signin-button"
+          onSubmit={signin}
+        />
+      );
+    };
+    ```
+
+    ```Javascript
+    // Signup.tsx
+    const Signup = () => {
+      const signup = async (email: string, password: string) => {
+        try {
+          await SIGNUP({
+            email,
+            password,
+          });
+          alert('회원가입이 성공하였습니다!\n로그인을 시도해주세요.');
+          navigate('/signin');
+        } catch (error: any) {
+          alert(error.response.data.message);
+        }
+      };
+
+      return (
+        <AuthContainer
+          title="회원가입"
+          dataTestid="signup-button"
+          onSubmit={signup}
+        />
+      );
+    }
+    ```
+
+   <br/>
 
 ### ✅ TODO
 
@@ -256,34 +415,36 @@
 #### 💥트러블 슈팅
 
 - 이슈
+
   - 안정성을 위하여 try catch문을 활용하여 api를 불러오는 방법으로 코드를 수정하였는데, RedirectRoute에 설정해 놓은 alert 창과 각 컴포넌트에 설정해놓은 try catch문에서 에러가 발생하는 catch문의 error메세지가 한꺼번에 활성화되어 alert메세지가 불필요하게 2번 활성화되는 이슈를 발견하였습니다.
 
-```javascript
- useEffect(() => {
-    if (accessToken && (location === '/signup' || location === '/signin')) {
-      alert('로그인 상태입니다!')
-      navigate('/todo')
-    }
-    if (!accessToken && location === '/todo') {
-      alert('로그인이 필요해요!')
-      navigate('/signin')
-    }
-  }, [navigate, location, accessToken])
-```
+    ```javascript
+    useEffect(() => {
+      if (accessToken && (location === '/signup' || location === '/signin')) {
+        alert('로그인 상태입니다!');
+        navigate('/todo');
+      }
+      if (!accessToken && location === '/todo') {
+        alert('로그인이 필요해요!');
+        navigate('/signin');
+      }
+    }, [navigate, location, accessToken]);
+    ```
 
 - 해결
+
   - 불필요한 useEffect는 삭제하고, return 할 수 있도록 `navigate()`를 `<Navigate to=""/>`로 변경하여 더 이상 실행할 필요가 없는 경우 한번만 실행되도록 하였습니다.
 
-```javascript
-if (accessToken && (location === '/signup' || location === '/signin')) {
-  alert('로그인 상태입니다!');
-  return <Navigate to="/todo" replace />;
-}
-if (!accessToken && location === '/todo') {
-  alert('로그인이 필요해요!');
-  return <Navigate to="/signin" replace />;
-}
-```
+    ```javascript
+    if (accessToken && (location === '/signup' || location === '/signin')) {
+      alert('로그인 상태입니다!');
+      return <Navigate to="/todo" replace />;
+    }
+    if (!accessToken && location === '/todo') {
+      alert('로그인이 필요해요!');
+      return <Navigate to="/signin" replace />;
+    }
+    ```
 
 <br/>
 
